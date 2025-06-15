@@ -1,9 +1,10 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { HandHeart, ArrowLeft, Send, MessageSquare } from 'lucide-react';
+import { Send, MessageSquare } from 'lucide-react';
 import { User, Message, Chat } from '../types/community';
 import { mockUsers } from '../data/mockData';
+import Header from '../components/Header';
 
 const Messages = () => {
   const navigate = useNavigate();
@@ -78,34 +79,16 @@ const Messages = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--warm-cream))] to-white">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-[hsl(var(--warm-gray))]/30 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center gap-3">
-            <button 
-              onClick={() => navigate('/')}
-              className="p-2 hover:bg-[hsl(var(--warm-gray))]/30 rounded-xl transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5 text-[hsl(var(--warm-text))]" />
-            </button>
-            <div className="w-10 h-10 bg-gradient-to-r from-[hsl(var(--coral))] to-[hsl(var(--coral-secondary))] rounded-2xl flex items-center justify-center">
-              <HandHeart className="w-6 h-6 text-white" />
-            </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-[hsl(var(--coral))] to-[hsl(var(--coral-secondary))] bg-clip-text text-transparent">
-              Messages
-            </h1>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-background">
+      <Header showBackButton={true} title="Messages" />
 
       <main className="max-w-6xl mx-auto px-4 py-8">
-        <div className="bg-white rounded-3xl shadow-lg shadow-orange-100/20 border border-[hsl(var(--warm-gray))]/30 overflow-hidden h-[600px]">
+        <div className="bg-card rounded-3xl shadow-lg shadow-orange-100/20 dark:shadow-orange-950/20 border border-border overflow-hidden h-[600px]">
           <div className="flex h-full">
             {/* Chat List */}
-            <div className="w-1/3 border-r border-[hsl(var(--warm-gray))]/30">
-              <div className="p-4 border-b border-[hsl(var(--warm-gray))]/30">
-                <h3 className="font-semibold text-[hsl(var(--warm-text))] flex items-center gap-2">
+            <div className="w-1/3 border-r border-border">
+              <div className="p-4 border-b border-border">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
                   <MessageSquare className="w-5 h-5" />
                   Your Conversations
                 </h3>
@@ -114,11 +97,11 @@ const Messages = () => {
               <div className="overflow-y-auto h-full">
                 {chats.length === 0 ? (
                   <div className="p-8 text-center">
-                    <MessageSquare className="w-12 h-12 text-[hsl(var(--warm-text))]/30 mx-auto mb-4" />
-                    <p className="text-[hsl(var(--warm-text))]/60">
+                    <MessageSquare className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                    <p className="text-muted-foreground">
                       No conversations yet
                     </p>
-                    <p className="text-sm text-[hsl(var(--warm-text))]/50 mt-2">
+                    <p className="text-sm text-muted-foreground mt-2">
                       Start by knocking on someone's profile!
                     </p>
                   </div>
@@ -127,7 +110,7 @@ const Messages = () => {
                     <button
                       key={chat.id}
                       onClick={() => setSelectedChat(chat)}
-                      className={`w-full p-4 text-left hover:bg-[hsl(var(--warm-gray))]/20 transition-colors border-b border-[hsl(var(--warm-gray))]/20 ${
+                      className={`w-full p-4 text-left hover:bg-muted/30 transition-colors border-b border-border/50 ${
                         selectedChat?.id === chat.id ? 'bg-[hsl(var(--coral))]/10' : ''
                       }`}
                     >
@@ -140,10 +123,10 @@ const Messages = () => {
                           />
                         )}
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-[hsl(var(--warm-text))] truncate">
+                          <h4 className="font-medium text-foreground truncate">
                             {chat.participants[0]?.name || 'New Chat'}
                           </h4>
-                          <p className="text-sm text-[hsl(var(--warm-text))]/60 truncate">
+                          <p className="text-sm text-muted-foreground truncate">
                             {chat.lastMessage || 'Say hello! 👋'}
                           </p>
                         </div>
@@ -159,7 +142,7 @@ const Messages = () => {
               {selectedChat ? (
                 <>
                   {/* Chat Header */}
-                  <div className="p-4 border-b border-[hsl(var(--warm-gray))]/30 bg-[hsl(var(--warm-gray))]/10">
+                  <div className="p-4 border-b border-border bg-muted/10">
                     <div className="flex items-center gap-3">
                       {selectedChat.participants.length > 0 && (
                         <img 
@@ -169,10 +152,10 @@ const Messages = () => {
                         />
                       )}
                       <div>
-                        <h4 className="font-semibold text-[hsl(var(--warm-text))]">
+                        <h4 className="font-semibold text-foreground">
                           {selectedChat.participants[0]?.name || 'New Chat'}
                         </h4>
-                        <p className="text-sm text-[hsl(var(--warm-text))]/60">
+                        <p className="text-sm text-muted-foreground">
                           {selectedChat.participants[0]?.profession}
                         </p>
                       </div>
@@ -184,7 +167,7 @@ const Messages = () => {
                     {selectedChat.messages.length === 0 ? (
                       <div className="text-center py-12">
                         <div className="text-6xl mb-4">👋</div>
-                        <p className="text-[hsl(var(--warm-text))]/60">
+                        <p className="text-muted-foreground">
                           Start the conversation! Say hello to your neighbor.
                         </p>
                       </div>
@@ -198,12 +181,12 @@ const Messages = () => {
                             className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${
                               message.senderId === 'current-user'
                                 ? 'bg-gradient-to-r from-[hsl(var(--coral))] to-[hsl(var(--coral-secondary))] text-white'
-                                : 'bg-[hsl(var(--warm-gray))]/30 text-[hsl(var(--warm-text))]'
+                                : 'bg-muted text-foreground'
                             }`}
                           >
                             <p className="text-sm">{message.content}</p>
                             <p className={`text-xs mt-1 ${
-                              message.senderId === 'current-user' ? 'text-white/70' : 'text-[hsl(var(--warm-text))]/50'
+                              message.senderId === 'current-user' ? 'text-white/70' : 'text-muted-foreground'
                             }`}>
                               {new Date(message.timestamp).toLocaleTimeString([], { 
                                 hour: '2-digit', 
@@ -217,7 +200,7 @@ const Messages = () => {
                   </div>
 
                   {/* Message Input */}
-                  <div className="p-4 border-t border-[hsl(var(--warm-gray))]/30">
+                  <div className="p-4 border-t border-border">
                     <div className="flex gap-2">
                       <input
                         type="text"
@@ -243,11 +226,11 @@ const Messages = () => {
               ) : (
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center">
-                    <MessageSquare className="w-16 h-16 text-[hsl(var(--warm-text))]/30 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-[hsl(var(--warm-text))] mb-2">
+                    <MessageSquare className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-foreground mb-2">
                       Welcome to Messages! 💬
                     </h3>
-                    <p className="text-[hsl(var(--warm-text))]/60">
+                    <p className="text-muted-foreground">
                       Select a conversation to start chatting with your neighbors
                     </p>
                   </div>
