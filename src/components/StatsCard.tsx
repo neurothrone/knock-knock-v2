@@ -24,10 +24,10 @@ const StatsCard = ({ icon, value, label, color }: StatsCardProps) => {
       <div className={`${iconColors[color]} mb-3`}>
         {icon}
       </div>
-      <div className="text-2xl font-bold text-[hsl(var(--warm-text))] mb-1">
+      <div className="text-2xl font-bold text-foreground mb-1">
         {value}
       </div>
-      <div className="text-sm text-[hsl(var(--warm-text))]/70">
+      <div className="text-sm text-muted-foreground">
         {label}
       </div>
     </div>

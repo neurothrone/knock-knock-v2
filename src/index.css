@@ -15,7 +15,7 @@
     --warm-gray: 20 8% 90%;           /* #E8E6E3 */
     --warm-text: 20 25% 15%;          /* #3E2723 */
     
-    /* Override default variables */
+    /* Light mode variables */
     --background: var(--warm-cream);
     --foreground: var(--warm-text);
     --card: 0 0% 100%;
@@ -27,6 +27,7 @@
     --muted: var(--warm-gray);
     --muted-foreground: var(--warm-text);
     --border: var(--warm-gray);
+    --input: var(--warm-gray);
     --radius: 1rem;
 
     /* Custom community variables */
@@ -36,6 +37,30 @@
     --sage-light: 88 45% 62%;
     --sunny: var(--sunny-yellow);
   }
+
+  .dark {
+    /* Dark mode warm colors */
+    --warm-dark-bg: 20 15% 8%;        /* #1A1612 */
+    --warm-dark-card: 20 12% 12%;     /* #2A251F */
+    --warm-dark-text: 30 25% 88%;     /* #F0EDE8 */
+    --warm-dark-muted: 20 10% 20%;    /* #3D3832 */
+    --warm-dark-border: 20 8% 25%;    /* #47423A */
+    
+    /* Dark mode overrides */
+    --background: var(--warm-dark-bg);
+    --foreground: var(--warm-dark-text);
+    --card: var(--warm-dark-card);
+    --card-foreground: var(--warm-dark-text);
+    --muted: var(--warm-dark-muted);
+    --muted-foreground: 30 15% 70%;
+    --border: var(--warm-dark-border);
+    --input: var(--warm-dark-border);
+    
+    /* Slightly adjusted accent colors for dark mode */
+    --coral: 22 95% 58%;
+    --sage: 88 40% 55%;
+    --sunny: 48 90% 60%;
+  }
 }
 
 @layer base {
@@ -44,12 +69,12 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans transition-colors duration-300;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply text-[hsl(var(--warm-text))];
+    @apply text-foreground;
   }
 }
 
@@ -58,22 +83,22 @@
   .btn-warm {
     @apply bg-gradient-to-r from-[hsl(var(--coral))] to-[hsl(var(--coral-secondary))] 
            text-white px-6 py-3 rounded-2xl font-medium
-           hover:shadow-lg hover:shadow-orange-200/50 
+           hover:shadow-lg hover:shadow-orange-200/50 dark:hover:shadow-orange-900/30
            transform hover:scale-105 transition-all duration-200;
   }
 
   .btn-secondary {
     @apply bg-gradient-to-r from-[hsl(var(--sage))] to-[hsl(var(--sage-light))] 
            text-white px-6 py-3 rounded-2xl font-medium
-           hover:shadow-lg hover:shadow-green-200/50 
+           hover:shadow-lg hover:shadow-green-200/50 dark:hover:shadow-green-900/30
            transform hover:scale-105 transition-all duration-200;
   }
 
   /* Community card styles */
   .community-card {
-    @apply bg-white rounded-3xl p-6 shadow-lg shadow-orange-100/20 
-           border border-[hsl(var(--warm-gray))]/30
-           hover:shadow-xl hover:shadow-orange-200/30 
+    @apply bg-card rounded-3xl p-6 shadow-lg shadow-orange-100/20 dark:shadow-orange-950/20
+           border border-border/30
+           hover:shadow-xl hover:shadow-orange-200/30 dark:hover:shadow-orange-950/30
            transform hover:-translate-y-1 transition-all duration-300;
   }
 
@@ -81,13 +106,14 @@
   .expertise-badge {
     @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
            bg-gradient-to-r from-[hsl(var(--sunny))]/20 to-[hsl(var(--coral))]/20
-           text-[hsl(var(--warm-text))] border border-[hsl(var(--sunny))]/30;
+           text-foreground border border-[hsl(var(--sunny))]/30;
   }
 
   /* Warm input styles */
   .warm-input {
-    @apply bg-white border-2 border-[hsl(var(--warm-gray))] rounded-2xl px-4 py-3
+    @apply bg-card border-2 border-border rounded-2xl px-4 py-3
            focus:border-[hsl(var(--coral))] focus:ring-4 focus:ring-[hsl(var(--coral))]/10
+           text-foreground placeholder:text-muted-foreground
            transition-all duration-200;
   }
 }

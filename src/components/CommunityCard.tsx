@@ -14,17 +14,17 @@ const CommunityCard = ({ user, onMessage }: CommunityCardProps) => {
         <img 
           src={user.avatar} 
           alt={user.name}
-          className="w-16 h-16 rounded-full object-cover border-3 border-white shadow-md"
+          className="w-16 h-16 rounded-full object-cover border-3 border-card shadow-md"
         />
         
         <div className="flex-1">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="font-semibold text-lg text-[hsl(var(--warm-text))]">
+            <h3 className="font-semibold text-lg text-foreground">
               {user.name}
             </h3>
             <div className="flex items-center gap-1">
               <Star className="w-4 h-4 fill-[hsl(var(--sunny))] text-[hsl(var(--sunny))]" />
-              <span className="text-sm font-medium text-[hsl(var(--warm-text))]">
+              <span className="text-sm font-medium text-foreground">
                 {user.rating}
               </span>
             </div>
@@ -32,12 +32,12 @@ const CommunityCard = ({ user, onMessage }: CommunityCardProps) => {
           
           <div className="flex items-center gap-2 mb-2">
             <MapPin className="w-4 h-4 text-[hsl(var(--sage))]" />
-            <span className="text-sm text-[hsl(var(--warm-text))]/70">
+            <span className="text-sm text-muted-foreground">
               {user.location} • {user.distance} miles away
             </span>
           </div>
           
-          <p className="text-sm text-[hsl(var(--warm-text))]/80 mb-3 leading-relaxed">
+          <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
             {user.bio}
           </p>
           
@@ -57,9 +57,9 @@ const CommunityCard = ({ user, onMessage }: CommunityCardProps) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className={`w-3 h-3 rounded-full ${
-                user.availability ? 'bg-[hsl(var(--sage))]' : 'bg-gray-300'
+                user.availability ? 'bg-[hsl(var(--sage))]' : 'bg-muted'
               }`} />
-              <span className="text-sm text-[hsl(var(--warm-text))]/70">
+              <span className="text-sm text-muted-foreground">
                 {user.availability ? 'Available now' : 'Busy'}
               </span>
             </div>
@@ -68,7 +68,7 @@ const CommunityCard = ({ user, onMessage }: CommunityCardProps) => {
               onClick={() => onMessage(user)}
               className="flex items-center gap-2 bg-gradient-to-r from-[hsl(var(--coral))] to-[hsl(var(--coral-secondary))] 
                          text-white px-4 py-2 rounded-xl text-sm font-medium
-                         hover:shadow-lg hover:shadow-orange-200/50 
+                         hover:shadow-lg hover:shadow-orange-200/50 dark:hover:shadow-orange-900/30
                          transform hover:scale-105 transition-all duration-200"
             >
               <MessageSquare className="w-4 h-4" />

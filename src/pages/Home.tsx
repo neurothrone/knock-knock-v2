@@ -1,47 +1,28 @@
-
 import { Users, Heart, BookOpen, HandHeart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import StatsCard from '../components/StatsCard';
 import { mockStats, mockUsers } from '../data/mockData';
+import ThemeToggle from '../components/ThemeToggle';
 
 const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--warm-cream))] to-white">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-[hsl(var(--warm-gray))]/30 sticky top-0 z-10">
+      <header className="bg-card shadow-lg shadow-orange-100/20 dark:shadow-orange-950/20 border-b border-border">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-[hsl(var(--coral))] to-[hsl(var(--coral-secondary))] rounded-2xl flex items-center justify-center">
-                <HandHeart className="w-6 h-6 text-white" />
+              <div className="bg-gradient-to-r from-[hsl(var(--coral))] to-[hsl(var(--coral-secondary))] p-3 rounded-2xl">
+                <span className="text-white text-xl font-bold">🏠</span>
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-[hsl(var(--coral))] to-[hsl(var(--coral-secondary))] bg-clip-text text-transparent">
-                Knock Knock
-              </h1>
+              <div>
+                <h1 className="text-2xl font-bold text-foreground">Knock Knock</h1>
+                <p className="text-sm text-muted-foreground">Your neighborhood expertise network</p>
+              </div>
             </div>
-            
-            <nav className="flex items-center gap-4">
-              <button 
-                onClick={() => navigate('/community')}
-                className="text-[hsl(var(--warm-text))] hover:text-[hsl(var(--coral))] font-medium transition-colors"
-              >
-                Community
-              </button>
-              <button 
-                onClick={() => navigate('/profile')}
-                className="text-[hsl(var(--warm-text))] hover:text-[hsl(var(--coral))] font-medium transition-colors"
-              >
-                Profile
-              </button>
-              <button 
-                onClick={() => navigate('/messages')}
-                className="text-[hsl(var(--warm-text))] hover:text-[hsl(var(--coral))] font-medium transition-colors"
-              >
-                Messages
-              </button>
-            </nav>
+            <ThemeToggle />
           </div>
         </div>
       </header>
@@ -49,10 +30,10 @@ const Home = () => {
       <main className="max-w-6xl mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-[hsl(var(--warm-text))] mb-4">
+          <h2 className="text-4xl font-bold text-foreground mb-4">
             Welcome to your neighborhood! 👋
           </h2>
-          <p className="text-xl text-[hsl(var(--warm-text))]/70 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground/70 mb-8 max-w-2xl mx-auto">
             Connect with skilled neighbors, share your expertise, and build a stronger community together.
           </p>
           
@@ -102,7 +83,7 @@ const Home = () => {
 
         {/* Featured Neighbors */}
         <section>
-          <h3 className="text-2xl font-bold text-[hsl(var(--warm-text))] mb-6">
+          <h3 className="text-2xl font-bold text-foreground mb-6">
             ⭐ Featured Neighbors
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -115,12 +96,12 @@ const Home = () => {
                     className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md"
                   />
                   <div>
-                    <h4 className="font-semibold text-[hsl(var(--warm-text))]">{user.name}</h4>
-                    <p className="text-sm text-[hsl(var(--warm-text))]/70">{user.profession}</p>
+                    <h4 className="font-semibold text-foreground">{user.name}</h4>
+                    <p className="text-sm text-muted-foreground">{user.profession}</p>
                   </div>
                 </div>
                 
-                <p className="text-sm text-[hsl(var(--warm-text))]/80 mb-3">
+                <p className="text-sm text-muted-foreground mb-3">
                   {user.bio.slice(0, 80)}...
                 </p>
                 
