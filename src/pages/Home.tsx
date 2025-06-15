@@ -1,3 +1,4 @@
+
 import { Users, Heart, BookOpen, HandHeart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import StatsCard from '../components/StatsCard';
@@ -22,7 +23,38 @@ const Home = () => {
                 <p className="text-sm text-muted-foreground">Your neighborhood expertise network</p>
               </div>
             </div>
-            <ThemeToggle />
+            
+            <div className="flex items-center gap-4">
+              {/* Navigation Links */}
+              <nav className="hidden md:flex items-center gap-6">
+                <button 
+                  onClick={() => navigate('/')}
+                  className="text-foreground hover:text-[hsl(var(--coral))] transition-colors font-medium"
+                >
+                  Home
+                </button>
+                <button 
+                  onClick={() => navigate('/community')}
+                  className="text-muted-foreground hover:text-[hsl(var(--coral))] transition-colors"
+                >
+                  Community
+                </button>
+                <button 
+                  onClick={() => navigate('/profile')}
+                  className="text-muted-foreground hover:text-[hsl(var(--coral))] transition-colors"
+                >
+                  Profile
+                </button>
+                <button 
+                  onClick={() => navigate('/messages')}
+                  className="text-muted-foreground hover:text-[hsl(var(--coral))] transition-colors"
+                >
+                  Messages
+                </button>
+              </nav>
+              
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </header>
