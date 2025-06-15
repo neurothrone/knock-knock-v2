@@ -3,61 +3,14 @@ import { Users, Heart, BookOpen, HandHeart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import StatsCard from '../components/StatsCard';
 import { mockStats, mockUsers } from '../data/mockData';
-import ThemeToggle from '../components/ThemeToggle';
+import Header from '../components/Header';
 
 const Home = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-card shadow-lg shadow-orange-100/20 dark:shadow-orange-950/20 border-b border-border">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-r from-[hsl(var(--coral))] to-[hsl(var(--coral-secondary))] p-3 rounded-2xl">
-                <span className="text-white text-xl font-bold">🏠</span>
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">Knock Knock</h1>
-                <p className="text-sm text-muted-foreground">Your neighborhood expertise network</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-4">
-              {/* Navigation Links */}
-              <nav className="hidden md:flex items-center gap-6">
-                <button 
-                  onClick={() => navigate('/')}
-                  className="text-foreground hover:text-[hsl(var(--coral))] transition-colors font-medium"
-                >
-                  Home
-                </button>
-                <button 
-                  onClick={() => navigate('/community')}
-                  className="text-muted-foreground hover:text-[hsl(var(--coral))] transition-colors"
-                >
-                  Community
-                </button>
-                <button 
-                  onClick={() => navigate('/profile')}
-                  className="text-muted-foreground hover:text-[hsl(var(--coral))] transition-colors"
-                >
-                  Profile
-                </button>
-                <button 
-                  onClick={() => navigate('/messages')}
-                  className="text-muted-foreground hover:text-[hsl(var(--coral))] transition-colors"
-                >
-                  Messages
-                </button>
-              </nav>
-              
-              <ThemeToggle />
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <main className="max-w-6xl mx-auto px-4 py-8">
         {/* Hero Section */}
