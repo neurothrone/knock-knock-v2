@@ -1,6 +1,7 @@
 
 import { User } from '../types/community';
 import { MessageSquare, MapPin, Star } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 interface CommunityCardProps {
   user: User;
@@ -8,14 +9,24 @@ interface CommunityCardProps {
 }
 
 const CommunityCard = ({ user, onMessage }: CommunityCardProps) => {
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
   return (
     <div className="community-card">
       <div className="flex items-start gap-4">
-        <img 
-          src={user.avatar} 
-          alt={user.name}
-          className="w-16 h-16 rounded-full object-cover border-3 border-card shadow-md"
-        />
+        <Avatar className="w-16 h-16">
+          <AvatarImage src={user.avatar} alt={user.name} />
+          <AvatarFallback className="bg-gradient-to-br from-[hsl(var(--coral))] to-[hsl(var(--sage))] text-white font-semibold text-lg">
+            {getInitials(user.name)}
+          </AvatarFallback>
+        </Avatar>
         
         <div className="flex-1">
           <div className="flex items-center justify-between mb-2">

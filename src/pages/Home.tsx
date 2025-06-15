@@ -4,9 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import StatsCard from '../components/StatsCard';
 import { mockStats, mockUsers } from '../data/mockData';
 import Header from '../components/Header';
+import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -75,11 +85,12 @@ const Home = () => {
             {mockUsers.slice(0, 3).map((user) => (
               <div key={user.id} className="community-card">
                 <div className="flex items-center gap-4 mb-4">
-                  <img 
-                    src={user.avatar} 
-                    alt={user.name}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md"
-                  />
+                  <Avatar className="w-12 h-12">
+                    <AvatarImage src={user.avatar} alt={user.name} />
+                    <AvatarFallback className="bg-gradient-to-br from-[hsl(var(--coral))] to-[hsl(var(--sage))] text-white font-semibold">
+                      {getInitials(user.name)}
+                    </AvatarFallback>
+                  </Avatar>
                   <div>
                     <h4 className="font-semibold text-foreground">{user.name}</h4>
                     <p className="text-sm text-muted-foreground">{user.profession}</p>
